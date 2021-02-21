@@ -43,6 +43,7 @@ class ViewController: UIViewController {
                 displayLabel.text = numValue
                 isFinishTypingNumber = false
             } else {
+                // Make decimal point able to show only once
                 if  numValue == "." {
                     guard let currentDisplayValue = Double(displayLabel.text!) else {
                         fatalError("Cannot convert display label text to a Double.")
