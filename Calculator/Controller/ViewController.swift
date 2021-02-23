@@ -29,15 +29,11 @@ class ViewController: UIViewController {
         isFinishTypingNumber = true
         
         if let calcMethod = sender.currentTitle {
-            if calcMethod == "+/-" {
-                displayValue *= -1
+            let calculator = CalculatorLogic(number: displayValue)
+            guard let result = calculator.calculate(symbol: calcMethod) else {
+                fatalError("The result of the calculation is nil.")
             }
-            if calcMethod == "AC" {
-                displayLabel.text = "0"
-            }
-            if calcMethod == "%" {
-                displayValue /= 100
-            }
+            displayValue = result
         }
     }
 
