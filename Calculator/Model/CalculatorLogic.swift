@@ -7,25 +7,27 @@
 
 import Foundation
 
-class CalculatorLogic {
+struct CalculatorLogic {
     
-    var number: Double
+    private var number: Double?
     
-    init(number: Double) {
+    mutating func setNumber(_ number: Double) {
         self.number = number
     }
-    
+
     func calculate(symbol: String) -> Double? {
-        if symbol == "+/-" {
-            return number * -1
+        if let n = number {
+            if symbol == "+/-" {
+                return n * -1
+            }
+            if symbol == "AC" {
+                return 0
+            }
+            if symbol == "%" {
+                return n / 100
+            }
         }
-        if symbol == "AC" {
-            return 0
-        }
-        if symbol == "%" {
-            return number / 100
-        }
-        return 0
+        return nil
     }
 
 }
